@@ -14,4 +14,12 @@
                  [net.mikera/core.matrix "0.48.0"]
                  [net.mikera/vectorz-clj "0.39.0"]
                  [org.clojure/math.numeric-tower "0.0.4"]
-                 [clj-random "0.1.7"]])
+                 [clj-random "0.1.7"]]
+  :repositories [["snapshots" {:url "https://clojars.org/repo"
+                               :username :env/CI_DEPLOY_USERNAME
+                               :password :env/CI_DEPLOY_PASSWORD
+                               :sign-releases false}]
+                 ["releases" {:url "https://clojars.org/repo"
+                              :username :env/CI_DEPLOY_USERNAME
+                              :password :env/CI_DEPLOY_PASSWORD
+                              :sign-releases false}]])
