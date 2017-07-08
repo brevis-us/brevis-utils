@@ -15,13 +15,14 @@
    (.exec (. Runtime getRuntime) command))
 
 (defn local-command
-   [command]
-   (when @debug-mode (println "local-command:" command))
-   #_(sh command)
-   (.exec (. Runtime getRuntime) command)
-   #_(let [proc (.exec (. Runtime getRuntime) command)]
-      (.waitFor proc)
-      (println (.getInputStream proc))))
+  "Default behavior is a nonblocking execution."
+  ([command]
+    (local-command command false))
+  ([command blocking?]
+    (when @debug-mode (println "local-command:" command))
+    (let [process (.exec (. Runtime getRuntime) command)]
+      (when blocking?
+        (.waitFor process)))))
 
 (defn remote-command
   [username server command]
@@ -32,12 +33,13 @@
     #_(local-command comm)))
 
 (defn upload-files
+  "Upload files from source to server:destination. Blocks until upload is complete."
   [username server source destination]
   ;; source: ../../../
   ;; destination: ~/
   (let [command (str "rsync -avzr " source " " username "@" server ":" destination)]
     (when @debug-mode (println "upload-files:" command))    
-    (local-command command)))
+    (local-command command true)))
 
 (defn serialize-map 
   [m sep] 

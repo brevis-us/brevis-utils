@@ -30,3 +30,8 @@
 	intermediate (map #(Math/pow (- %1 mean) 2) samples)]
     (Math/sqrt 
      (/ (reduce + intermediate) n))))   
+
+(defn average
+  "Calculate an average."
+  [samples]
+  (/ (apply + samples) (count samples)))
