@@ -17,12 +17,12 @@
 (defn local-command
   "Default behavior is a nonblocking execution."
   ([command]
-    (local-command command false))
-  ([command blocking?]
-    (when @debug-mode (println "local-command:" command))
+    (local-command command nil))
+  ([command timeout]
+    (when @debug-mode (println "local-command:" command "with timeout:" timeout))
     (let [process (.exec (. Runtime getRuntime) command)]
-      (when blocking?
-        (.waitFor process)))))
+      (when timeout
+        (.waitFor process timeout java.util.concurrent.TimeUnit/MILLISECONDS)))))
 
 (defn remote-command
   [username server command]
