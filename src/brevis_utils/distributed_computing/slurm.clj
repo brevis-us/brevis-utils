@@ -67,7 +67,7 @@ appropriate configuration file to be passed to the hpc."
                  (rest argmaps))))
   (upload-files username server (str source "/") (str destination expName "/"))
   (println "Uploaded files.")
-  (Thread/sleep 2)
+  (Thread/sleep 0.01)
   (println "Remotely configuring project.")
   (remote-command username server (str "cd " destination expName "; lein clean; lein compile;"))
   (println "Configuration complete.")
@@ -124,7 +124,7 @@ sed -n -e \"$SLURM_ARRAY_TASK_ID p\" " (str destination expName "/" command-file
          (doseq [f to-copy]           
            (upload-files username server (str source "/" f) (str destination expName "/")))))
      (println "Uploaded files.")
-     (Thread/sleep 2)
+     (Thread/sleep 0.01)
      (println "Remotely configuring project.")
      (when with-cleanup
        (println "Cleanup!")
