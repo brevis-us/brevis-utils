@@ -39,7 +39,7 @@
   ;; destination: ~/
   (let [command (str "rsync -avzr " source " " username "@" server ":" destination)]
     (when @debug-mode (println "upload-files:" command))    
-    (local-command command true)))
+    (local-command command 5000)))
 
 (defn serialize-map 
   [m sep] 

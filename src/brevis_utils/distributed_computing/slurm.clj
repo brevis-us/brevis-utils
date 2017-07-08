@@ -116,7 +116,7 @@ appropriate configuration file to be passed to the hpc."
                                (for [rep (range (ceil (/ (count command-list) max-jobs)))]
                                  (str "sed -n -e ''$(($SLURM_ARRAY_TASK_ID+" rep  "*" max-jobs "))'p' """ (str destination expName "/" command-filename) " | sh")))))
        (spit job-filename
-             (str "#!/bin/bash\n source ~/.bashrc\n                                                                                                                                                                                         
+             (str "#!/bin/sh\nsource ~/.bashrc\n                                                                                                                                                                                         
 sed -n -e \"$SLURM_ARRAY_TASK_ID p\" " (str destination expName "/" command-filename) " | sh")))
      (if copy-entire-project
        (upload-files username server (str source "/") (str destination expName "/"))
