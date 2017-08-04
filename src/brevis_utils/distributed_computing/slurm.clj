@@ -80,22 +80,22 @@ appropriate configuration file to be passed to the hpc."
 
 (defn launch-array
   "Launches an experiment from the configuration file numruns times."
-  [username server expName jobFile numjobs duration enable-job-output]
-  (let [command (str "source /etc/profile; sbatch " (when-not enable-job-output "-o /dev/null ") "--time=" duration " -J " expName " -n " (str numjobs) " sh " jobFile)]
+  [username server expName jobFile numjobs extra-args enable-job-output]
+  (let [command (str "source /etc/profile; sbatch " (when-not enable-job-output "-o /dev/null ") " " extra-args " -J " expName " -n " (str numjobs) " " jobFile)]
         #_(str "bsub " optArgs " -t 1-" (str numruns) " -N " expName " " configFile)
     (when debug (println "launch-config:" command))
     (remote-command username server command)))
 
 
 (defn start-run-array
-   [argmaps namespace username server & {:keys [expName numruns source destination duration profile-name with-cleanup enable-job-output
+   [argmaps namespace username server & {:keys [expName numruns source destination extra-args profile-name with-cleanup enable-job-output
                                                 copy-entire-project]
             :or {expName (str "brevis_experiment_" (System/nanoTime)) 
                  numruns 1
                  source "./"
                  destination "~/"
-                 duration "1:00"
-                 profile-name "cluster"
+                 extra-args "--time=01:00:00"
+                 profile-name nil ;"cluster"
                  with-cleanup false
                  enable-job-output true
                  copy-entire-project true}}]
@@ -111,13 +111,14 @@ appropriate configuration file to be passed to the hpc."
      ;; Write command list job
      (if (> (count command-list) max-jobs)
        (spit job-filename
-             (str "#!/bin/bash\n source ~/.bashrc\n"
+             (str "#!/bin/bash\nsource ~/.bashrc\n"
                   (string/join "\n"
                                (for [rep (range (ceil (/ (count command-list) max-jobs)))]
                                  (str "sed -n -e ''$(($SLURM_ARRAY_TASK_ID+" rep  "*" max-jobs "))'p' """ (str destination expName "/" command-filename) " | sh")))))
        (spit job-filename
              (str "#!/bin/sh\nsource ~/.bashrc\n                                                                                                                                                                                         
 sed -n -e \"$SLURM_ARRAY_TASK_ID p\" " (str destination expName "/" command-filename) " | sh")))
+     (when debug "Uploading files")
      (if copy-entire-project
        (upload-files username server (str source "/") (str destination expName "/"))
        (let [to-copy ["src" "project.clj" "resources" command-filename job-filename]]
@@ -130,6 +131,6 @@ sed -n -e \"$SLURM_ARRAY_TASK_ID p\" " (str destination expName "/" command-file
        (println "Cleanup!")
        (remote-command username server (str "cd " destination expName "; lein clean; lein compile;")))
      (println "Configuration complete.")
-     (launch-array username server expName (str destination expName "/" job-filename) (min max-jobs (count command-list)) duration enable-job-output)
+     (launch-array username server expName (str destination expName "/" job-filename) (min max-jobs (count command-list)) extra-args enable-job-output)
      (println "All runs submitted.")))
 
