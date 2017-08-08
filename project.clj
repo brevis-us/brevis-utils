@@ -1,9 +1,11 @@
-(defproject brevis.us/brevis-utils "0.1.1"
+(defproject brevis.us/brevis-utils "0.1.2-SNAPSHOT"
   :description "Utilities from the Brevis suite"
   :url "https://github.com/brevis-us/brevis-utils"
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
   :dependencies [[org.clojure/clojure "1.8.0"]
+
+                 [me.raynes/conch "0.8.0"]
                  
                  ;; Math
                  [net.mikera/core.matrix "0.48.0"]

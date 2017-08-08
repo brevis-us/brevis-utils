@@ -1,4 +1,4 @@
-(ns brevis-utils.distributed-computing.rocks
+(ns brevis-utils.distributed-computing.pbs
   (:use [clojure.java.shell]
         [brevis-utils.distributed-computing.dc-utils])
   (:require [me.raynes.conch :refer [programs with-programs let-programs]])
@@ -14,14 +14,14 @@
 ;(def debug false)
 
 (defn gen-config
-  ;; Takes a set of params(argmap), a configFileName,
-  ;; and the output parameters to be used in the output log, then generates the
-  ;; appropriate configuration file to be passed to the hpc
+  "Takes a set of params(argmap), a configFileName,
+  and the output parameters to be used in the output log, then generates the
+  appropriate configuration file to be passed to the hpc"
   [argmap configFileName namespace expName basedir]
   (let [out-str (str
                   "#!/bin/sh\n"
                   "cd " basedir ";\n"
-                  "lein run -m "
+                  "lein -o run -m "
                   namespace
                   #_expName
                   " "
@@ -34,9 +34,9 @@
     (spit configFileName out-str)))
 
 (defn launch-config
-  ;; Launches an experiment from the configuration file numruns times.
+  "Launches an experiment from the configuration file numruns times."
   [username server expName configFile numruns optArgs]
-  (let [command (str "qsub " configFile " -t 1-" (str numruns) " -N " expName)];  used to include optArgs, removed because it returned {}
+  (let [command (str "source ~/.bash_profile; qsub " optArgs " -J 1-" (str numruns) " -N " expName " " configFile)];  used to include optArgs, removed because it returned {}
     (when @debug-mode (println "launch-config:" command))
     (remote-command username server command)))
 
