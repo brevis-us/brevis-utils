@@ -1,4 +1,4 @@
-(defproject brevis.us/brevis-utils "0.1.2-SNAPSHOT"
+(defproject brevis.us/brevis-utils "0.1.2"
   :description "Utilities from the Brevis suite"
   :url "https://github.com/brevis-us/brevis-utils"
   :license {:name "Eclipse Public License"
