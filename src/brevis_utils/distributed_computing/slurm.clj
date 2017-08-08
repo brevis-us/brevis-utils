@@ -58,7 +58,7 @@ appropriate configuration file to be passed to the hpc."
     (remote-command username server command)))
 
 (defn start-runs
-  [argmaps namespace expName username server numruns source destination duration]
+  [argmaps namespace expName username server numruns source destination opt-args]
   (loop [conf 0
          argmaps argmaps]
     (when-not (empty? argmaps)
@@ -73,7 +73,7 @@ appropriate configuration file to be passed to the hpc."
   (println "Configuration complete.")
   (dotimes [i (count argmaps)]
     (upload-files username server (str "job_" expName "_" i ".sh") (str destination expName "/" (str "job_" expName "_" i ".sh")))
-    (launch-config username server expName (str destination expName "/job_" expName "_" i ".sh") numruns duration)
+    (launch-config username server expName (str destination expName "/job_" expName "_" i ".sh") numruns opt-args)
     (Thread/sleep 0.1)
     #_(Thread/sleep 0.01))
   (println "All runs submitted."))
