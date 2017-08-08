@@ -52,7 +52,7 @@
   (println "Uploaded files.")
   (Thread/sleep 2)
   (println "Remotely configuring project.")
-  (remote-command username server (str "cd " destination expName "; lein clean; lein compile;"))
+  (remote-command username server (str "source ~/.bash_profile; cd " destination expName "; lein clean; lein deps;   lein compile;"))
   (println "Configuration complete.")
   (dotimes [i (count argmaps)]
     (upload-files username server (str "job_" expName "_" i ".sh") (str destination expName "/" (str "job_" expName "_" i ".sh")))

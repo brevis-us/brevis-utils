@@ -11,11 +11,11 @@
     (println argmaps)))
 
 (deftest test-PBS-launch
-    (when-not (System/getenv "PBS_RSHCOMMAND")
+    (when (System/getenv "PBS_BREVISTEST")
       (let [argmaps (into []
                           (map #(hash-map :run-id %)
                                (range 2)))
-            namespace *ns*
+            namespace "brevis-utils.test.distributed-computing.pbs"
             expName "Brevis_PBSTest"
             username (System/getenv "PBS_USERNAME")
             server (System/getenv "PBS_HOSTNAME")

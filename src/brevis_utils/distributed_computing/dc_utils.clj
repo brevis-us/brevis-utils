@@ -30,7 +30,7 @@
         (str "ssh " username "@" server " \"" command "\"")]
     (when @debug-mode (println "remote-command:" comm))
     (ssh (str username "@" server) command)
-    #_(local-command comm)))
+    #_(local-command comm 100000)))
 
 (defn upload-files
   "Upload files from source to server:destination. Blocks until upload is complete."
