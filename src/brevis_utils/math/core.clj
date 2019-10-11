@@ -26,8 +26,8 @@
 ;; from rosettacode.org
 (defn std-dev [samples]
   (let [n (count samples)
-	mean (/ (reduce + samples) n)
-	intermediate (map #(Math/pow (- %1 mean) 2) samples)]
+        mean (/ (reduce + samples) n)
+        intermediate (map #(Math/pow (- %1 mean) 2) samples)]
     (Math/sqrt 
      (/ (reduce + intermediate) n))))   
 

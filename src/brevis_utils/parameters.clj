@@ -26,13 +26,13 @@
 (defn print-params
   "Print the current parameter map."
   ([]
-    (print-params @params))
+   (print-params @params))
   ([ps]
-    (doseq [[k v] ps]
-      (cond (= k :random-seed)
-            (println k (str "[" (random/seed-to-string v) "]"))
-            :else
-            (println k v)))))
+   (doseq [[k v] ps]
+     (cond (= k :random-seed)
+           (println k (str "[" (random/seed-to-string v) "]"))
+           :else
+           (println k v)))))
 
 (defn params-from-argseq
   "Load params from a sequence of arguments. Autoconverts strings, so this can be risky."
@@ -66,6 +66,6 @@
 (defn get-param-map
   "Get a map of parameters, maybe a subset specified by keys."
   ([]
-    (get-param-map (keys @params)))
+   (get-param-map (keys @params)))
   ([ks]
-    (select-keys @params ks)))
+   (select-keys @params ks)))

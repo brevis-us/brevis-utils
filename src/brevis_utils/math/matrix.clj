@@ -10,16 +10,16 @@
 (defn matrix
   "Make a matrix."
   ([^Long length]
-    (matrix length length))
+   (matrix length length))
   ([^Long rows ^Long cols]
-    (mat/new-matrix rows cols)))
+   (mat/new-matrix rows cols)))
     
 #_(defn identity-matrix
    "Return an identity matrix."
    ([w]
-     (MatrixUtils/identity w w))
+    (MatrixUtils/identity w w))
    ([r c]
-     (MatrixUtils/identity r c))); deprecated to favor core.matrix version
+    (MatrixUtils/identity r c))); deprecated to favor core.matrix version
 
 (def identity-matrix mat/identity-matrix)
 
@@ -239,7 +239,7 @@
   [m]
   (map sum-matrix (mat/rows m))
   #_(let [height (matrix-height mat)
-         width (matrix-width mat)]
+          width (matrix-width mat)]
      (seq-to-matrix 1 width (map #(apply + %) (partition height (matrix-to-seq mat))))))
 
 (defn sum-columns
@@ -271,7 +271,7 @@ A singular values decomposition always exists."
   [A]
   (linear/svd A)
   #_(let [sv (org.ojalgo.matrix.decomposition.SingularValue/make A)
-         success? (.decompose sv A)]
+          success? (.decompose sv A)]
      (when success?
        {:condition (.getCondition sv)
         :D (.getD sv)

@@ -51,7 +51,7 @@ appropriate configuration file to be passed to the hpc."
   "Launches an experiment from the configuration file numruns times."
   [username server expName configFile numruns duration]
   (let [command (str "bsub -W " duration " -J " expName "[1-" (str numruns) "] " configFile)]
-        #_(str "bsub " optArgs " -t 1-" (str numruns) " -N " expName " " configFile)
+    #_(str "bsub " optArgs " -t 1-" (str numruns) " -N " expName " " configFile)
     (when @debug-mode (println "launch-config:" command))
     (remote-command username server command)))
 
@@ -80,7 +80,7 @@ appropriate configuration file to be passed to the hpc."
   "Launches an experiment from the configuration file numruns times."
   [username server expName jobFile numjobs duration enable-job-output]
   (let [command (str "source /etc/profile; bsub " (when-not enable-job-output "-o /dev/null ") "-W " duration " -J " expName "[1-" (str numjobs) "] sh " jobFile)]
-        #_(str "bsub " optArgs " -t 1-" (str numruns) " -N " expName " " configFile)
+    #_(str "bsub " optArgs " -t 1-" (str numruns) " -N " expName " " configFile)
     (when @debug-mode (println "launch-config:" command))
     (remote-command username server command)))
 

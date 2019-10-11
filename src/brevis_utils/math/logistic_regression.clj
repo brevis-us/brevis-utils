@@ -108,15 +108,15 @@
   "simple k-start for k-means with no repeat centroids"
   ([k mat] (k-start k mat (matrix-to-rvec-seq mat)))
   ([k mat rvec-seq]
-  (let [start (repeatedly k #(nth rvec-seq (random/lrand-int (matrix-height mat))))
-        copies? (flatten 
-                  (for [x start]
-                    (map #(= x %) start)))
-        truths (count (filter true? copies?))
-        total (count start)]
-    (if (= truths total)
-      start
-      (k-start k mat rvec-seq)))))
+   (let [start (repeatedly k #(nth rvec-seq (random/lrand-int (matrix-height mat))))
+         copies? (flatten
+                   (for [x start]
+                     (map #(= x %) start)))
+         truths (count (filter true? copies?))
+         total (count start)]
+     (if (= truths total)
+       start
+       (k-start k mat rvec-seq)))))
 
 
 (defn k-means ; will most likely break if seq-to-matrix is fixed
@@ -143,32 +143,32 @@
                   true
                   false)]
         
-      (if (or (= end true) (> iterations 2000))
-        {:clusters new-clusters
-         :centroids (rvec-seq-sort new-means )
-         ;:old-centroids means
-         :iterations iterations
-         :distance mean-distance
-         }
-        (recur (inc iterations)
-               new-means))))))
+        (if (or (= end true) (> iterations 2000))
+          {:clusters new-clusters
+           :centroids (rvec-seq-sort new-means )
+           ;:old-centroids means
+           :iterations iterations
+           :distance mean-distance
+           }
+          (recur (inc iterations)
+                 new-means))))))
 
 
 (defn logistic-regression
   "Logistic regression. x feature matrix, y label vector."
   ([x y stop] (logistic-regression x y stop (theta-init (matrix-width x))))
   ([x y stop theta-start]
-    (loop [iteration 0
-           theta theta-start
-           ]
-      (if (= stop iteration)
-        theta
-        (recur (inc iteration)
-               (matrix-mult (transpose x) 
-                            (sub y 
-                                 (matrix-pmap sigmoid 
-                                             (matrix-mult x 
-                                                          theta
-                                                          )))))))))
+   (loop [iteration 0
+          theta theta-start
+          ]
+     (if (= stop iteration)
+       theta
+       (recur (inc iteration)
+              (matrix-mult (transpose x)
+                           (sub y
+                                (matrix-pmap sigmoid
+                                            (matrix-mult x
+                                                         theta
+                                                         )))))))))
 
 

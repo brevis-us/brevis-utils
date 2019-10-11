@@ -53,7 +53,7 @@ appropriate configuration file to be passed to the hpc."
   "Launches an experiment from the configuration file numruns times."
   [username server expName configFile numruns duration]
   (let [command (str "sbatch --time=" duration " -J " expName " -n " (str numruns) " " configFile)]
-        #_(str "bsub " optArgs " -t 1-" (str numruns) " -N " expName " " configFile)
+    #_(str "bsub " optArgs " -t 1-" (str numruns) " -N " expName " " configFile)
     (when debug (println "launch-config:" command))
     (remote-command username server command)))
 
@@ -82,7 +82,7 @@ appropriate configuration file to be passed to the hpc."
   "Launches an experiment from the configuration file numruns times."
   [username server expName jobFile numjobs extra-args enable-job-output]
   (let [command (str "source /etc/profile; sbatch " (when-not enable-job-output "-o /dev/null ") " " extra-args " -J " expName " -n " (str numjobs) " " jobFile)]
-        #_(str "bsub " optArgs " -t 1-" (str numruns) " -N " expName " " configFile)
+    #_(str "bsub " optArgs " -t 1-" (str numruns) " -N " expName " " configFile)
     (when debug (println "launch-config:" command))
     (remote-command username server command)))
 
@@ -90,15 +90,15 @@ appropriate configuration file to be passed to the hpc."
 (defn start-run-array
    [argmaps namespace username server & {:keys [expName numruns source destination extra-args profile-name with-cleanup enable-job-output
                                                 copy-entire-project]
-            :or {expName (str "brevis_experiment_" (System/nanoTime)) 
-                 numruns 1
-                 source "./"
-                 destination "~/"
-                 extra-args "--time=01:00:00"
-                 profile-name nil ;"cluster"
-                 with-cleanup false
-                 enable-job-output true
-                 copy-entire-project true}}]
+                                         :or {expName (str "brevis_experiment_" (System/nanoTime))
+                                              numruns 1
+                                              source "./"
+                                              destination "~/"
+                                              extra-args "--time=01:00:00"
+                                              profile-name nil ;"cluster"
+                                              with-cleanup false
+                                              enable-job-output true
+                                              copy-entire-project true}}]
    (let [command-list (for [run-id (range numruns)
                             argmap argmaps]; this could be a good time to insert unique random seeds
                         (gen-command argmap namespace (str destination expName) profile-name))

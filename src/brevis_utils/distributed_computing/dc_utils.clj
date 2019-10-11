@@ -17,12 +17,12 @@
 (defn local-command
   "Default behavior is a nonblocking execution."
   ([command]
-    (local-command command nil))
+   (local-command command nil))
   ([command timeout]
-    (when @debug-mode (println "local-command:" command "with timeout:" timeout))
-    (let [process (.exec (. Runtime getRuntime) command)]
-      (when timeout
-        (.waitFor process timeout java.util.concurrent.TimeUnit/MILLISECONDS)))))
+   (when @debug-mode (println "local-command:" command "with timeout:" timeout))
+   (let [process (.exec (. Runtime getRuntime) command)]
+     (when timeout
+       (.waitFor process timeout java.util.concurrent.TimeUnit/MILLISECONDS)))))
 
 (defn remote-command
   [username server command]
@@ -43,4 +43,4 @@
 
 (defn serialize-map 
   [m sep] 
-  (str (clojure.string/join sep (map (fn [[k v]] (str k " " v)) m ))))
+  (str (clojure.string/join sep (map (fn [[k v]] (str k " " v)) m))))
