@@ -1,14 +1,15 @@
 # brevis-utils
 
-A Clojure library designed to ... well, that part is up to you.
+The brevis-utils library was split off from [brevis](http://brevis.us/) to separate parameter, math, and distributed 
+computing functionality from the core brevis library.
 
-## Usage
-
-FIXME
+Cluster computing library support for:
+- PBS
+- LSF
+- SLURM
 
 ## License
 
-Copyright © 2017 FIXME
+Copyright © 2017 Kyle Harrington
 
-Distributed under the Eclipse Public License either version 1.0 or (at
-your option) any later version.
+Distributed under the Apache V2.0 license.
