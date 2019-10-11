@@ -8,6 +8,8 @@ Cluster computing library support for:
 - LSF
 - SLURM
 
+Special thanks to [Alex Bardasu](https://github.com/phreakazoid21) for his initial work on cluster support in brevis.
+
 ## License
 
 Copyright © 2017 Kyle Harrington
