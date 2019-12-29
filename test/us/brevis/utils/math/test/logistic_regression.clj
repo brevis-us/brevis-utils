@@ -1,6 +1,6 @@
 (ns us.brevis.utils.math.test.logistic-regression
   (:use [clojure.test]
-        [brevis-utils.math logistic-regression matrix]))
+        [us.brevis.utils.math logistic-regression matrix]))
 
 (defn logistic-regression-test
   []

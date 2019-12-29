@@ -1,6 +1,6 @@
 (ns us.brevis.utils.distributed-computing.dc-utils
    (:use [clojure.java.shell]
-        [clojure.math.numeric-tower])
+         [clojure.math.numeric-tower])
    (:require [me.raynes.conch :refer [programs with-programs let-programs]]
              [clojure.string :as string])
    (:import [java.io]))

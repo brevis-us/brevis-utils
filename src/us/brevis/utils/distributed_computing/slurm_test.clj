@@ -1,7 +1,7 @@
 (ns us.brevis.utils.distributed-computing.slurm-test
   (:use [clojure.test])
-  (:require [brevis-utils.distributed-computing.slurm :as slurm]
-            [brevis-utils.distributed-computing.dc-utils :as dc-utils]))
+  (:require [us.brevis.utils.distributed-computing.slurm :as slurm]
+            [us.brevis.utils.distributed-computing.dc-utils :as dc-utils]))
 
 (defn -main [& args]
   (let [;; First put everything into a map

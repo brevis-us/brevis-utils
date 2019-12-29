@@ -1,6 +1,6 @@
 (ns us.brevis.utils.test.parameters
   (:use [clojure.test])
-  (:require [brevis-utils.parameters :as params]))
+  (:require [us.brevis.utils.parameters :as params]))
 
 (deftest test-set-param
   (let [v 42]

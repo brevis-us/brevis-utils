@@ -1,8 +1,8 @@
 (ns us.brevis.utils.distributed-computing.test.pbs
     (:gen-class)
     (:require [clojure.test :refer :all]
-              [brevis-utils.distributed-computing.pbs :refer :all]
-              [brevis-utils.parameters :as params]))
+              [us.brevis.utils.distributed-computing.pbs :refer :all]
+              [us.brevis.utils.parameters :as params]))
 
 (defn -main
   [& args]
@@ -15,7 +15,7 @@
       (let [argmaps (into []
                           (map #(hash-map :run-id %)
                                (range 2)))
-            namespace "brevis-utils.test.distributed-computing.pbs"
+            namespace "us.brevis.utils.distributed-computing.test.pbs"
             expName "Brevis_PBSTest"
             username (System/getenv "PBS_USERNAME")
             server (System/getenv "PBS_HOSTNAME")

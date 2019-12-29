@@ -1,7 +1,7 @@
 (ns us.brevis.utils.distributed-computing.slurm
   (:use [clojure.java.shell]
         [clojure.math.numeric-tower]
-        [brevis-utils.distributed-computing.dc-utils])
+        [us.brevis.utils.distributed-computing.dc-utils])
   (:require [me.raynes.conch :refer [programs with-programs let-programs]]
             [clojure.string :as string])
   (:import [java.io]))
