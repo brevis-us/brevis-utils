@@ -1,5 +1,5 @@
-(ns brevis-utils.math.matrix
-  (:use [brevis-utils.math core])
+(ns us.brevis.utils.math.matrix
+  (:use [us.brevis.utils.math core])
   (:require ;[brevis-utils.vector :as vector]
             [clojure.core.matrix :as mat]
             [clojure.core.matrix.operators :as matops]

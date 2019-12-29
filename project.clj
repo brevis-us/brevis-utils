@@ -1,4 +1,4 @@
-(defproject brevis.us/brevis-utils "0.1.3-SNAPSHOT"
+(defproject us.brevis/brevis-utils "1.0.0-SNAPSHOT"
   :description "Utilities from the Brevis suite"
   :url "https://github.com/brevis-us/brevis-utils"
   :license {:name "Apache v2"

@@ -1,4 +1,4 @@
-(ns brevis-utils.distributed-computing.pbs
+(ns us.brevis.utils.distributed-computing.pbs
   (:use [clojure.java.shell]
         [brevis-utils.distributed-computing.dc-utils])
   (:require [me.raynes.conch :refer [programs with-programs let-programs]])

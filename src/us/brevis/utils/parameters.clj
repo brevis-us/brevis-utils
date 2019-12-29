@@ -1,4 +1,4 @@
-(ns brevis-utils.parameters
+(ns us.brevis.utils.parameters
   (:use [clj-random.core :as random]))
 
 (def params (atom {}))

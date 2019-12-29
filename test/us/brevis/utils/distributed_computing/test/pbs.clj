@@ -1,5 +1,5 @@
-(ns brevis-utils.test.distributed-computing.pbs
-  (:gen-class)
+(ns us.brevis.utils.distributed-computing.test.pbs
+    (:gen-class)
     (:require [clojure.test :refer :all]
               [brevis-utils.distributed-computing.pbs :refer :all]
               [brevis-utils.parameters :as params]))

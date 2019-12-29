@@ -1,4 +1,4 @@
-(ns brevis-utils.distributed-computing.slurm-test
+(ns us.brevis.utils.distributed-computing.slurm-test
   (:use [clojure.test])
   (:require [brevis-utils.distributed-computing.slurm :as slurm]
             [brevis-utils.distributed-computing.dc-utils :as dc-utils]))

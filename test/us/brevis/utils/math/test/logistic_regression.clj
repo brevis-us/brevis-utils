@@ -1,4 +1,4 @@
-(ns brevis-utils.test.math.logistic-regression
+(ns us.brevis.utils.math.test.logistic-regression
   (:use [clojure.test]
         [brevis-utils.math logistic-regression matrix]))
 
@@ -6,8 +6,7 @@
   []
   (let [X (seq-to-matrix 10 2 (flatten (repeat 2 (range 1 11))))
         theta (seq-to-matrix 2 1 '(0.25 0.75))
-        Y (transpose (matrix-mult (transpose theta) (transpose X)))
-        ]
+        Y (transpose (matrix-mult (transpose theta) (transpose X)))]
+
 ;    [X theta Y]
-    (logistic-regression X Y 10 theta)
-    ))
+    (logistic-regression X Y 10 theta)))

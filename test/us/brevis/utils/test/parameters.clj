@@ -1,4 +1,4 @@
-(ns brevis-utils.test.parameters
+(ns us.brevis.utils.test.parameters
   (:use [clojure.test])
   (:require [brevis-utils.parameters :as params]))
 
@@ -9,8 +9,8 @@
 
 (deftest test-param-file-io
   (let [test-params {:integer-test 3
-                     :double-test 13.0}; yeah string test i know i know
-        ]
+                     :double-test 13.0}]; yeah string test i know i know
+
     (params/clear-params)
     (doseq [[k v] test-params]
       (params/set-param k v))

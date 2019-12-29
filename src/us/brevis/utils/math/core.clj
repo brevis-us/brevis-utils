@@ -1,4 +1,4 @@
-(ns brevis-utils.math.core)
+(ns us.brevis.utils.math.core)
 
 ;; the following functions from ztellman's cantor (see github)
 (defn radians

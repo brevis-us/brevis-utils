@@ -1,5 +1,5 @@
-(ns brevis-utils.math.logistic-regression
-    (:use [brevis-utils.math matrix])
+(ns us.brevis.utils.math.logistic-regression
+    (:use [us.brevis.utils.math matrix])
     (:require [clj-random.core :as random]))
 
 (defn sigmoid

@@ -1,4 +1,4 @@
-(ns brevis-utils.test.math.matrix
+(ns us.brevis.utils.math.test.matrix
     (:use [clojure.test]
           [brevis-utils.math matrix])
     (:require [clojure.core.matrix :as mat]))

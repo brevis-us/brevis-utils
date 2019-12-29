@@ -1,4 +1,4 @@
-(ns brevis-utils.test.distributed-computing.slurm
+(ns us.brevis.utils.distributed-computing.test.slurm
   (:gen-class)
   (:require [clojure.test :refer :all]
             [brevis-utils.distributed-computing.slurm :refer :all]
